@@ -13,7 +13,7 @@ pipeline {
             steps {
                 echo 'Generating SBOM using cdxgen...'
                 // Run cdxgen to create the SBOM in CycloneDX format
-                sh 'cdxgen -o sbom.json'
+                sh '/usr/local/bin/cdxgen -o sbom.json'
                 archiveArtifacts artifacts: 'sbom.json', allowEmptyArchive: true
             }
         }
