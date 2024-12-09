@@ -21,6 +21,7 @@ stages:
           - script: |
               docker run \
               -e OX_API_KEY=$(OX_API_KEY) \
+              -e OX_API_URL=$(OX_API_URL) \
               --env-file <(env | grep 'SYSTEM_\|BUILD_') \
               oxsecurity/ox-block-mode:latest
             displayName: Execute OX Security Scan1
