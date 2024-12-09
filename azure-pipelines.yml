@@ -20,8 +20,8 @@ stages:
         steps:
           - script: |
               docker run \
-              -e ox_host_url=$(OX_HOST_URL) \
-              -e ox_api_key=$(OX_API_KEY) \
+              -e OX_HOST_URL=$(OX_HOST_URL) \
+              -e OX_API_KEY=$(OX_API_KEY) \
               --env-file <(env | grep 'SYSTEM_\|BUILD_') \
               oxsecurity/ox-block-mode:latest
             displayName: Execute OX Security Scan1
