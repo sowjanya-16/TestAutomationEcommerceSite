@@ -8,12 +8,19 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
+variables:
+  - group: "OX"  # Reference a variable group named "OX" that contains secrets like OX_API_KEY
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
-
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+stages:
+  - stage: OX_Security_Scan
+    displayName: OX Security Scan
+    jobs:
+      - job: OX
+        displayName: Run OX Security Scan
+        steps:
+          - script: |
+              docker run \
+              -e OX_API_KEY=$(OX_API_KEY) \
+              --env-file <(env | grep 'SYSTEM_\|BUILD_') \
+              oxsecurity/ox-block-mode:latest
+            displayName: Execute OX Security Scan
