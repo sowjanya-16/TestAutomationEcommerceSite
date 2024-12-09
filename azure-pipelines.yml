@@ -22,6 +22,7 @@ stages:
               docker run \
               -e OX_HOST_URL=$(OX_HOST_URL) \
               -e OX_API_KEY=$(OX_API_KEY) \
+              -e ox_disable_ssl_validation=$(ox_disable_ssl_validation) \
               --env-file <(env | grep 'SYSTEM_\|BUILD_') \
               oxsecurity/ox-block-mode:latest
             displayName: Execute OX Security Scan1
